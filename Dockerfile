@@ -28,6 +28,9 @@ ADD ./update.sh $SERVER/update.sh
 ADD ./server.cfg $SERVER/csgo/csgo/cfg/server.cfg
 ADD ./csgo.sh $SERVER/csgo.sh
 
+RUN chmod 777 $SERVER/csgo.sh
+RUN chmod 777 $SERVER/update.sh
+
 RUN mkdir /home/get5
 RUN cd /home/get5
 RUN wget https://github.com/splewis/get5/releases/download/0.7.1/get5_0.7.1.zip
