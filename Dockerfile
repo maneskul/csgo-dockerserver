@@ -51,7 +51,10 @@ RUN echo 'sv_lan 0"' >> $SERVER/csgo/csgo/cfg/autoexec.cfg
 RUN echo 'rcon_password "$RCON"' >> $SERVER/csgo/csgo/cfg/autoexec.cfg
 RUN echo 'sv_password "$SV_PASSWORD"' >> $SERVER/csgo/csgo/cfg/autoexec.cfg
 
+EXPOSE 27015
 EXPOSE 27015/udp
+
+EXPOSE 27024
 EXPOSE 27024/udp
 
 WORKDIR /home/$USER/hlserver
