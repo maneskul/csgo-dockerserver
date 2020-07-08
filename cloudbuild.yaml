@@ -1,0 +1,3 @@
+steps:
+- name: csgo-dockerserver
+  args: ['build', '-t', 'gcr.io/bts-brasil-tv/csgo-dockerserver:latest', '.']

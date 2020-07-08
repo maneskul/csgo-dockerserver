@@ -15,12 +15,7 @@ RUN apt-get -y update \
 
 RUN cp -RT /home/get5/ $SERVER/csgo/addons/
 
-RUN echo 'log on' > $SERVER/csgo/csgo/cfg/autoexec.cfg
-RUN echo 'hostname "CSGO Server"' >> $SERVER/csgo/csgo/cfg/autoexec.cfg
-RUN echo 'sv_cheats 0' >> $SERVER/csgo/csgo/cfg/autoexec.cfg
-RUN echo 'sv_lan 0"' >> $SERVER/csgo/csgo/cfg/autoexec.cfg
-RUN echo 'rcon_password "$RCON"' >> $SERVER/csgo/csgo/cfg/autoexec.cfg
-RUN echo 'sv_password "$SV_PASSWORD"' >> $SERVER/csgo/csgo/cfg/autoexec.cfg
+ADD ./csgo.sh $SERVER/csgo.sh
 
 USER $USER
 
