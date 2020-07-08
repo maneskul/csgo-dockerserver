@@ -1,1 +1,4 @@
-timeout: 1h
+steps:
+- name: csgo-dockerserver
+  args: ['build', '-t', 'gcr.io/bts-brasil-tv/csgo-dockerserver', '.']
+  timeout: 1h
