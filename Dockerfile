@@ -25,16 +25,8 @@ ENV LANGUAGE en_US.UTF-8
 
 ADD ./csgo_ds.txt $SERVER/csgo_ds.txt
 ADD ./update.sh $SERVER/update.sh
-ADD ./autoexec.cfg $SERVER/csgo/csgo/cfg/autoexec.cfg
 ADD ./server.cfg $SERVER/csgo/csgo/cfg/server.cfg
 ADD ./csgo.sh $SERVER/csgo.sh
-
-RUN echo $'log on  \n\
-hostname "CSGO Server" \n\
-sv_cheats 0 \n\
-sv_lan 0  \n\
-rcon_password ${RCON} \n\
-sv_password ${SV_PASSWORD}' > $SERVER/csgo/csgo/cfg/autoexec.cfg
 
 RUN mkdir /home/get5
 RUN cd /home/get5
@@ -48,6 +40,13 @@ RUN curl http://media.steampowered.com/client/steamcmd_linux.tar.gz | tar -C $SE
     && $SERVER/update.sh
 
 RUN cp -RT /home/get5/ $SERVER/csgo/addons/
+
+RUN echo 'log on' > $SERVER/csgo/csgo/cfg/autoexec.cfg
+RUN echo 'hostname "CSGO Server"' >> $SERVER/csgo/csgo/cfg/autoexec.cfg
+RUN echo 'sv_cheats 0' >> $SERVER/csgo/csgo/cfg/autoexec.cfg
+RUN echo 'sv_lan 0"' >> $SERVER/csgo/csgo/cfg/autoexec.cfg
+RUN echo 'rcon_password $RCON"' >> $SERVER/csgo/csgo/cfg/autoexec.cfg
+RUN echo 'sv_password $SV_PASSWORD"' >> $SERVER/csgo/csgo/cfg/autoexec.cfg
 
 EXPOSE 27015/udp
 EXPOSE 27024/udp
