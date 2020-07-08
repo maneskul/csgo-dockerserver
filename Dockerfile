@@ -3,10 +3,15 @@ FROM gonzih/csgo-server
 ENV SV_PASSWORD notleakpls
 ENV RCON dontleakpls
 
-RUN mkdir /home/get5
+USER root
+RUN mkdir -p /home/get5
+RUN chown $USER /home/get5
 RUN cd /home/get5
-RUN wget https://github.com/splewis/get5/releases/download/0.7.1/get5_0.7.1.zip
-RUN unzip get5_0.7.1.zip
+
+RUN apt-get -y update \
+    && apt-get install -y wget unzip \
+    && wget https://github.com/splewis/get5/releases/download/0.7.1/get5_0.7.1.zip \
+    && unzip get5_0.7.1.zip
 
 RUN cp -RT /home/get5/ $SERVER/csgo/addons/
 
@@ -16,6 +21,8 @@ RUN echo 'sv_cheats 0' >> $SERVER/csgo/csgo/cfg/autoexec.cfg
 RUN echo 'sv_lan 0"' >> $SERVER/csgo/csgo/cfg/autoexec.cfg
 RUN echo 'rcon_password "$RCON"' >> $SERVER/csgo/csgo/cfg/autoexec.cfg
 RUN echo 'sv_password "$SV_PASSWORD"' >> $SERVER/csgo/csgo/cfg/autoexec.cfg
+
+USER $USER
 
 EXPOSE 27015
 EXPOSE 27015/udp
