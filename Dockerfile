@@ -24,6 +24,8 @@ RUN echo 'sv_password "$SV_PASSWORD"' >> $SERVER/csgo/csgo/cfg/autoexec.cfg
 
 USER $USER
 
+RUN $SERVER/update.sh
+
 EXPOSE 27015
 EXPOSE 27015/udp
 
